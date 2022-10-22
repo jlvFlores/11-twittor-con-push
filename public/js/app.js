@@ -6,7 +6,6 @@ var swReg;
 
 if ( navigator.serviceWorker ) {
 
-
     if ( url.includes('localhost') ) {
         swLocation = '/sw.js';
     }
@@ -21,6 +20,7 @@ if ( navigator.serviceWorker ) {
         });
 
     });
+
 }
 
 
@@ -330,7 +330,7 @@ btnDesactivadas.on( 'click', function() {
                 body: JSON.stringify( suscripcion )
             })
             .then( verificaSuscripcion )
-            .catch( console.log() );
+            .catch( cancelarSuscripcion );
 
         });
 
