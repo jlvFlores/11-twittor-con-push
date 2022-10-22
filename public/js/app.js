@@ -221,26 +221,42 @@ isOnline();
 
 
 // Notificaciones
+function verificaSuscripcion( activadas ) {
+
+    if ( activadas ) {
+        
+        btnActivadas.removeClass('oculto');
+        btnDesactivadas.addClass('oculto');
+
+    } else {
+        btnActivadas.addClass('oculto');
+        btnDesactivadas.removeClass('oculto');
+    }
+
+}
+
+verificaSuscripcion();
 
 function enviarNotificacion() {
 
-    const NotificationOpts = {
-        body: 'Este es el cuerpo de la notificacion',
+    const notificationOpts = {
+        body: 'Este es el cuerpo de la notificación',
         icon: 'img/icons/icon-72x72.png'
-    }
+    };
 
-    const n = new Notification('Hola Mundo', NotificationOpts);
+
+    const n = new Notification('Hola Mundo', notificationOpts);
 
     n.onclick = () => {
         console.log('Click');
-    }
+    };
 
 }
 
 function notificarme() {
 
     if ( !window.Notification ) {
-        console.log('este navegador no soporta notificaciones');
+        console.log('Este navegador no soporta notificaciones');
         return;
     }
 
@@ -249,11 +265,11 @@ function notificarme() {
         // new Notification('Hola Mundo! - granted');
         enviarNotificacion();
 
-    } else if ( Notification.permission !== 'denied' || Notification.permission === 'default') {
+    } else if ( Notification.permission !== 'denied' || Notification.permission === 'default' )  {
 
         Notification.requestPermission( function( permission ) {
 
-            console.log(permission);
+            console.log( permission );
 
             if ( permission === 'granted' ) {
                 // new Notification('Hola Mundo! - pregunta');
@@ -266,4 +282,4 @@ function notificarme() {
 
 }
 
-notificarme();
+// notificarme();
