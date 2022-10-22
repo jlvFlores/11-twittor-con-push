@@ -232,8 +232,6 @@ isOnline();
 // Notificaciones
 function verificaSuscripcion( activadas ) {
 
-    console.log( activadas );
-
     if ( activadas ) {
         
         btnActivadas.removeClass('oculto');
@@ -335,5 +333,21 @@ btnDesactivadas.on( 'click', function() {
         });
 
     });
+
+});
+
+function cancelarSuscripcion() {
+
+    swReg.pushManager.getSubscription().then( subs => {
+
+        subs.unsubscribe().then( () =>  verificaSuscripcion(false) );
+
+    });
+
+}
+
+btnActivadas.on( 'click', function() {
+
+    cancelarSuscripcion();
 
 });
